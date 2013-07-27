@@ -12,7 +12,6 @@ using namespace std;
 vector<int> Y;
 int CC(int y){
   int res=0;
-  bool f = true;
   for(int i=0;i<Y.size()-1;i++){
     int ma = max(Y[i],Y[i+1]);
     int mi = min(Y[i],Y[i+1]);
@@ -23,17 +22,13 @@ int CC(int y){
       res++;
     }
     if(Y[i]==Y[i+1]&&Y[i]==y){
-      f=false;
+      return -1;
     }
   }
   if(Y[Y.size()-1]==y){
     res++;
   }
-  if(f){
-    return res;
-  }else{
-    return -1;
-  }
+  return res;
 }
 
 class PiecewiseLinearFunctionDiv2 {
