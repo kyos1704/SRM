@@ -11,17 +11,17 @@
 using namespace std;
 #define mp make_pair
 int X,Y;
-bool rep(long long x,long long y,long long k){
+bool rec(long long x,long long y,long long k){
   if(x==X&&y==Y)return true;
   if(y==X&&x==Y)return true;
   if(k>1000000000)return false;
   if(y>Y)return false;
   if(x>X)return false;
-  return rep(x+k,y,k*3)||rep(x,y+k,k*3);
+  return rec(x+k,y,k*3)||rec(x,y+k,k*3);
 }
 bool solve(int x,int y){
   X=x;Y=y;
-  return rep(0,0,1);
+  return rec(0,0,1);
 }
 class PowerOfThreeEasy {
   public:
