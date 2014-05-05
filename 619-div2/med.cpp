@@ -1,36 +1,24 @@
 #include<bits/stdc++.h>
 using namespace std;
 class ChooseTheBestOne {
-  public:
 
+  public:
   int countNumber(int N) {
-    vector<int> dp(N+1,1);
-    dp[0]=0;
-    int deleted = 1;
-    for(int i=1;i<N;i++){
-      deleted--;
-      long long tmp = (i%(N-i+1))*(i%(N-i+1))*(i%(N-i+1));
-      tmp=tmp%(N-i+1);
-      deleted = (deleted + tmp)%(N-i+1);
-      if(deleted==0)deleted+=(N-i+1);
-      int count=0;
-      for(int j=0;j<dp.size();j++){
-        if(dp[j]==1)count++;
-        if(count==deleted){
-          dp[j]=false;
-          break;
-        }
-      }
-      deleted = count;
+    vector<int> table(N);
+    for(int i=0;i<table.size();i++){
+      table[i]=i+1;
     }
     int c = 0;
-    for(int i=0;i<dp.size();i++){
-      c+=dp[i];
+    int s = 0;
+    while(table.size()!=1){
+      c++;
+      long long tmp = (c%table.size())*(c%table.size())*(c%table.size())%table.size();
+      tmp = (tmp-1+table.size())%table.size();
+      s = (tmp+s+table.size())%table.size();
+      table.erase(table.begin()+s);
     }
-    for(int i=0;i<dp.size();i++){
-      if(dp[i])return i;
-    }
-    return -1;
+    return table[0];
+  
   }
 
   
