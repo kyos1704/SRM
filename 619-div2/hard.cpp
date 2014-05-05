@@ -15,11 +15,16 @@ class EmployManager {
         hire[i]=true;
       }
     }
+    for(int i=0;i<hire.size();i++){
+      if(hire[i])cout<<i<<" ";
+    }cout<<endl;
     int ans=0;
     for(int i=0;i<hire.size();i++){
-      if(hire[i])ans-=value[i];
-      for(int j=i+1;j<hire.size();j++){
-        if(hire[j])ans+= (int)(earning[i][j]-'0');
+      if(hire[i]){
+        ans-=value[i];
+        for(int j=i+1;j<hire.size();j++){
+          if(hire[j])ans+= (int)(earning[i][j]-'0');
+        }
       }
     }
     for(int i=0;i<hire.size();i++){
